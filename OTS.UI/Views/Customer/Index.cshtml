@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model List<OTS.Core.DTOModels.CustomerList>
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Customer List</h5>
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Market Name</th>
+                                <th>Customer Name</th>
+                                <th>Customer Phone</th>
+                                <th>Created By</th>
+                                <th>Transactions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.MarketName</td>
+                                <td>@item.CustomerName</td>
+                                <td>@item.CustomerPhone</td>
+                                <td>@item.UserName</td>
+                                <td>
+                                    <a class="btn btn-warning" href="/Market/Update/@item.MarketId">
+                                        <i class="fa fa-bell">&nbsp;&nbsp;Güncelle&nbsp;</i>
+                                    </a>
+
+                                    <a class="btn btn-danger" href="/Market/Delete/@item.MarketId">
+                                        <i class="fa fa-minus-circle">&nbsp;&nbsp;Delete&nbsp;</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

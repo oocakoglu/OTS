@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OTS.Model
+namespace OTS.Core.DTOModels
 {
-    public class Cargo : IEntity
+    public class CargoList 
     {
         public int CargoId { get; set; }
 
@@ -14,6 +14,6 @@ namespace OTS.Model
 
         public int UserId { get; set; }
 
-
+        public string UserName { get; set; }
     }
 }

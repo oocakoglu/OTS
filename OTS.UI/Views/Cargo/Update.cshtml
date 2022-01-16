@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Cargo Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OTS.Model.Cargo
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" action="/Cargo/Update" method="post" enctype="multipart/form-data" onsubmit="theButton.disabled = true; return true;">
+                <div class="card-body">
+                    <h4 class="card-title">Cargo Update Screen</h4>
+                    <input type="text" name="CargoId" value="@Model.CargoId" hidden/>
+                    <div class="row">
+                        <div class="col-6 pull-left">
+
+                            <div class="form-group row">
+                                <label for="CargoName" class="control-label col-sm-4 col-form-label">Cargo Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="CargoName" name="CargoName" placeholder="Cargo Name" value="@Model.CargoName" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-4 col-form-label">Cargo Logo</label>
+                                <div class="col-sm-8">
+                                    <label class="btn btn-warning" for="imageUpload">
+                                        <i class="fa fa-camera">Load Logo</i>
+                                        <input type="file" name="postedFile" class="custom-file-input" id="imageUpload" accept=".jpg,.png,.jpeg" style="display:none" hidden onchange="loadFile(event)" />
+                                    </label>
+                                    <div class="invalid-feedback">invalid file</div>
+                                </div>
+                                @*<label for="fname" class="control-label col-sm-2 col-form-label">Choose image..</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="file" name="postedFile" class="custom-file-input" id="validatedCustomFile">
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose image...</label>
+                                            <div class="invalid-feedback">invalid fle</div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                        <div class="col-6 pull-right">
+                            <img id="myloadImage" src="@Model.CargoImageUrl" width="140" height="140" />
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button name="theButton" type="submit" class="btn btn-warning">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section CargoPageJs{
+    <script>
+    var loadFile = function (event) {
+        var myloadImage = document.getElementById('myloadImage');
+        myloadImage.src = URL.createObjectURL(event.target.files[0])
+
+    }
+    </script>
+}

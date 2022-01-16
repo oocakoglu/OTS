@@ -41,15 +41,15 @@ namespace OTS.Data
 
         public async Task<int> CommitAsync()
         {
-            //try
-            //{
+            try
+            {
                 return await _context.SaveChangesAsync();
-            //}
-            //catch (Exception e)
-            //{
-            //    ;
-            //    return await _context.SaveChangesAsync();
-            //}
+            }
+            catch (Exception e)
+            {
+                ;
+                return await _context.SaveChangesAsync();
+            }
 
         }
 

@@ -1,4 +1,5 @@
-﻿using OTS.Model;
+﻿using OTS.Core.DTOModels;
+using OTS.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,12 @@ namespace OTS.Core.Services
 {
     public interface ICargoService
     {
-        Task<IEnumerable<Cargo>> GetAllCargos();
-        Task<Cargo> GetCargoById(int id);
+        
+        Task<Cargo> GetCargoById(int cargoId);
         Task<Cargo> CreateCargo(Cargo newCargo);
-        Task UpdateCargo(Cargo cargoToBeUpdated, Cargo cargo);
-        Task DeleteCargo(Cargo cargo);
+        Task UpdateCargoById(Cargo upCargo, int cargoId);
+        Task DeleteCargoById(int cargoId);
+        Task<IEnumerable<CargoList>> GetCargoList();
+        //Task<IEnumerable<Cargo>> GetAllCargos();
     }
 }

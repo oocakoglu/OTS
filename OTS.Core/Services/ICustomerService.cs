@@ -9,10 +9,12 @@ namespace OTS.Core.Services
 {
     public interface ICustomerService
     {
+        Task<Customer> GetCustomerById(int customerId);
         Task<Customer> CreateCustomer(Customer newCustomer);
-        Task UpdateCustomer(Customer customerToBeUpdated, Customer customer);
-        Task DeleteCustomer(Customer customer);
-
+        Task UpdateCustomerById(Customer upCustomer, int customerId);
+        Task DeleteCustomerById(int customerId);
+        
         Task<IEnumerable<CustomerList>> GetCustomerList();
+        Task<Customer> GetCustomerfromPhone(string phoneNumber);
     }
 }

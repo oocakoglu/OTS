@@ -89,3 +89,42 @@ function LoginControl() {
         }
     });
 }
+
+function SearchCustomer() {
+    var mdata = {
+        sPhone: $("#SearchPhone").val()
+    };
+    $.ajax({
+        url: "/Customer/CustomerSearch",
+        type: "post",
+        data: mdata,
+        success: function (e) {
+            if (e != false) {
+                $("#CustomerName").val(e.customerName);
+                $("#CustomerPhone").val(e.customerPhone);
+                $("#CustomerAddress").html(e.customerAddress);
+                $("#MarketId").val(e.marketId);
+
+                errorMes("Custome phone already exist in the database", "Error")
+                $("#StatusBar").removeAttr("hidden");
+                $("#StatusBar").addClass("text-danger");
+                $("#StatusBar").html("Custome phone already exist in the database");;
+            }
+            else {
+                $("#CustomerName").removeAttr("disabled", "disabled");
+                $("#CustomerPhone").removeAttr("disabled", "disabled");
+                $("#CustomerAddress").removeAttr("disabled", "disabled");
+                $("#MarketId").removeAttr("disabled", "disabled");
+                $("#theButton").removeAttr("disabled", "disabled");
+
+                $("#CustomerName").val("");
+                $("#CustomerPhone").val(mdata.sPhone);
+                $("#CustomerAddress").html("");
+                $("#StatusBar").attr("hidden", true);
+                //setAttribute("style", "background-color: red;");
+                sucMess("Phone number not exist in database. You can add customer", "Phone Number Checked");                
+            }
+
+        }
+    })
+}

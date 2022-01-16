@@ -90,7 +90,6 @@ namespace OTS.UI.Controllers
             }
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Delete(int? Id)
         {

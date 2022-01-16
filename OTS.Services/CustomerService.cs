@@ -19,6 +19,11 @@ namespace OTS.Services
             this._unitOfWork = unitOfWork;
         }
 
+        public async Task<Customer> GetCustomerById(int customerId)
+        {
+            return await _unitOfWork.Customers.GetByIdAsync(customerId);
+        }
+
         public async Task<Customer> CreateCustomer(Customer newCustomer)
         {
             await _unitOfWork.Customers.AddAsync(newCustomer);
@@ -26,12 +31,28 @@ namespace OTS.Services
             return newCustomer;
         }
 
-        public async Task DeleteCustomer(Customer customer)
+        public async Task UpdateCustomerById(Customer upCustomer, int customerId)
         {
+            Customer customer = await GetCustomerById(customerId);
+            customer.CustomerName = upCustomer.CustomerName;
+            customer.CustomerPhone = upCustomer.CustomerPhone;
+            customer.CustomerAddress = upCustomer.CustomerAddress;
+            customer.MarketId = upCustomer.MarketId;
+            customer.UserId = upCustomer.UserId;            
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task DeleteCustomerById(int customerId)
+        {
+            Customer customer = await GetCustomerById(customerId);
             _unitOfWork.Customers.Remove(customer);
             await _unitOfWork.CommitAsync();
         }
 
+        public async Task<Customer> GetCustomerfromPhone(string phoneNumber)
+        {
+            return await _unitOfWork.Customers.GetAllQuery().Where(q => q.CustomerPhone == phoneNumber).FirstOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<CustomerList>> GetCustomerList()
         {
@@ -53,20 +74,6 @@ namespace OTS.Services
         }
 
 
-        public async Task UpdateCustomer(Customer customerToBeUpdated, Customer customer)
-        {
-            customerToBeUpdated.CustomerName = customer.CustomerName;
-            customerToBeUpdated.CustomerPhone = customer.CustomerPhone;
-            customerToBeUpdated.MarketId = customer.MarketId;
-            customerToBeUpdated.UserId = customer.UserId;
-            customerToBeUpdated.CustomerAddress = customer.CustomerAddress;
-            await _unitOfWork.CommitAsync();
-        }
 
-        //Task<IEnumerable<Customer>> ICustomerService.GetAllCustomerWithUserAndMarket()
-        //{
-        //    return _unitOfWork.Customers.GetAllAsync();
-        //    throw new NotImplementedException();
-        //}
     }
 }

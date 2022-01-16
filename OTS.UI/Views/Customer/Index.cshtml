@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Customer List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -32,11 +32,11 @@
                                 <td>@item.CustomerPhone</td>
                                 <td>@item.UserName</td>
                                 <td>
-                                    <a class="btn btn-warning" href="/Market/Update/@item.MarketId">
-                                        <i class="fa fa-bell">&nbsp;&nbsp;Güncelle&nbsp;</i>
+                                    <a class="btn btn-warning" href="/Customer/Update/@item.CustomerId">
+                                        <i class="fa fa-bell">&nbsp;&nbsp;Update&nbsp;</i>
                                     </a>
 
-                                    <a class="btn btn-danger" href="/Market/Delete/@item.MarketId">
+                                    <a class="btn btn-danger" href="/Customer/Delete/@item.CustomerId">
                                         <i class="fa fa-minus-circle">&nbsp;&nbsp;Delete&nbsp;</i>
                                     </a>
                                 </td>

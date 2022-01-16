@@ -66,10 +66,9 @@ namespace OTS.Services
             return await  query.ToListAsync();
         }
 
-
-
-
-
-
+        public async Task<IEnumerable<Market>> GetAllMarket()
+        {
+            return await _unitOfWork.Markets.GetAllAsync();
+        }
     }
 }

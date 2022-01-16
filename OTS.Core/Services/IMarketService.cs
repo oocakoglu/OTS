@@ -13,9 +13,8 @@ namespace OTS.Core.Services
         Task<Market> CreateMarket(Market newMarket);
         Task UpdateMarketWithId(Market upMarket, int marketId);
         Task DeleteMarketWithId(int marketId);
-
-        Task<IEnumerable<MarketList>> GetAllMarketWithUser();
-        
+        Task<IEnumerable<Market>> GetAllMarket();
+        Task<IEnumerable<MarketList>> GetAllMarketWithUser();       
 
     }
 }

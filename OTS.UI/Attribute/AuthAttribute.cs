@@ -12,29 +12,29 @@ namespace OTS.UI.Attribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //var myContext = filterContext.HttpContext;
-            //if (myContext.Session.GetString("SessionContext") != null)
-            //{
-            //    base.OnActionExecuting(filterContext);
-            //}
-            //else
-            //{
-            //    filterContext.Result = new RedirectToRouteResult(new { action = "Index", controller = "Login" });
-            //}
-
             var myContext = filterContext.HttpContext;
-            if (myContext.Session.GetString("SessionContext") == null)
-            {                
-                SessionContext _sessionContext = new SessionContext()
-                {
-                    UserId = 2,
-                    UserName = "Sample User",
-                    ImageUrl = ""
-                };
-                string _session = _sessionContext.ToJson();
-                myContext.Session.SetString("SessionContext", _session);
+            if (myContext.Session.GetString("SessionContext") != null)
+            {
+                base.OnActionExecuting(filterContext);
             }
-            base.OnActionExecuting(filterContext);
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new { action = "Index", controller = "Login" });
+            }
+
+            //var myContext = filterContext.HttpContext;
+            //if (myContext.Session.GetString("SessionContext") == null)
+            //{                
+            //    SessionContext _sessionContext = new SessionContext()
+            //    {
+            //        UserId = 2,
+            //        UserName = "Sample User",
+            //        ImageUrl = ""
+            //    };
+            //    string _session = _sessionContext.ToJson();
+            //    myContext.Session.SetString("SessionContext", _session);
+            //}
+            //base.OnActionExecuting(filterContext);
         }
     }
 }
